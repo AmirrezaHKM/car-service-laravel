@@ -9,22 +9,19 @@ class TicketMessage extends Model
 {
     use HasFactory;
 
-    // فیلدهایی که اجازه دارند به صورت Mass Assignment پر شوند
     protected $fillable = [
-        'ticket_id',  // شناسه تیکت
-        'sender_id',  // شناسه فرستنده پیام
-        'message',    // محتوا پیام
+        'ticket_id',
+        'sender_id',
+        'message',
     ];
 
-    // رابطه بین جدول 'ticket_messages' و 'tickets'
     public function ticket()
     {
-        return $this->belongsTo(Ticket::class, 'ticket_id');  // هر پیام به یک تیکت تعلق دارد
+        return $this->belongsTo(Ticket::class, 'ticket_id');
     }
 
-    // رابطه بین جدول 'ticket_messages' و 'users'
     public function sender()
     {
-        return $this->belongsTo(User::class, 'sender_id');  // هر پیام از یک کاربر ارسال می‌شود
+        return $this->belongsTo(User::class, 'sender_id');
     }
 }
