@@ -1,39 +1,10 @@
-<!DOCTYPE html>
-<html lang="fa">
-<head>
-    <meta charset="UTF-8">
-    <title>سامانه نوبت‌دهی تعمیرگاه</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            direction: rtl;
-            font-family: 'Tahoma', sans-serif;
-            scroll-behavior: smooth;
-        }
+@extends('layouts.base')
 
-        .fade-in {
-            animation: fadeIn 1s ease-in-out both;
-        }
+@section('title', 'خانه')
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
-</head>
-<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
-
-    <!-- هدر -->
-    <header class="bg-indigo-900 text-white shadow-md py-4 px-6 flex justify-between items-center fade-in">
-        <h1 class="text-xl font-bold">سامانه نوبت‌دهی تعمیرگاه</h1>
-        <nav class="space-x-4 space-x-reverse text-sm">
-            <a href="/login" class="hover:text-gray-300 transition">ورود</a>
-            <a href="/register" class="hover:text-gray-300 transition">ثبت‌نام</a>
-        </nav>
-    </header>
-
+@section('content')
     <!-- بخش Hero -->
-    <section class="flex-grow flex flex-col justify-center items-center text-center px-4 py-12 bg-gradient-to-br from-indigo-100 to-white fade-in">
+    <section class="flex flex-col justify-center items-center text-center px-4 py-12 bg-gradient-to-br from-indigo-100 to-white fade-in">
         <h2 class="text-4xl font-bold text-indigo-800 mb-4">تجربه‌ای نوین در مدیریت تعمیرگاه</h2>
         <p class="max-w-xl text-gray-600 text-lg leading-relaxed mb-6">
             با سامانه ما می‌توانید نوبت‌های تعمیر را آسان‌تر رزرو کنید، درخواست‌های مشتریان را مدیریت کرده و با پشتیبانی در ارتباط باشید.
@@ -67,11 +38,4 @@
             </div>
         </div>
     </section>
-
-    <!-- فوتر -->
-    <footer class="bg-indigo-900 text-white text-center py-4 text-sm fade-in">
-        © 2025 سامانه نوبت‌دهی تعمیرگاه | طراحی با ❤️ توسط شما
-    </footer>
-
-</body>
-</html>
+@endsection

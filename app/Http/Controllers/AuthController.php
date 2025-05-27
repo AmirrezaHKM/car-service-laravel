@@ -35,11 +35,11 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
             'phone' => $request->phone,
             'role' => $request->role,
-            'status' => true, // پیش‌فرض فعال
+            'status' => true, 
         ]);
 
         Auth::login($user);
 
-        return redirect()->route('dashboard'); // یا هر مسیر دلخواه دیگر
+        return redirect()->route('home');
     }
 }

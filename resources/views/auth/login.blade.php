@@ -1,45 +1,68 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+@extends('layouts.app')
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+@section('title', 'ورود به سامانه')
 
-        <!-- Phone Number -->
-        <div>
-            <x-input-label for="phone" :value="__('Phone Number')" />
-            <x-text-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required autofocus autocomplete="tel" />
-            <x-input-error :messages="$errors->get('phone')" class="mt-2" />
+@section('content')
+<div class="flex items-center justify-center min-h-screen px-4 bg-blue-50">
+    <div class="w-full max-w-4xl bg-white shadow-xl rounded-2xl overflow-hidden flex flex-col md:flex-row">
+
+        <!-- تصویر -->
+        <div class="md:w-1/2 hidden md:block">
+            <img src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?auto=format&fit=crop&w=800&q=80"
+                 alt="تصویر ورود" class="h-full w-full object-cover">
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" class="block mt-1 w-full"
-                          type="password"
-                          name="password"
-                          required autocomplete="current-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+        <!-- فرم ورود -->
+        <div class="md:w-1/2 p-8">
+            <h2 class="text-2xl font-bold text-blue-700 text-center mb-6">ورود به سامانه</h2>
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
+            @if (session('status'))
+                <div class="mb-4 text-sm text-green-600">
+                    {{ session('status') }}
+                </div>
             @endif
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+
+                <!-- شماره موبایل -->
+                <div class="mb-4">
+                    <label for="phone" class="block text-sm font-medium text-blue-900">شماره موبایل</label>
+                    <input id="phone" name="phone" type="text" required autofocus
+                        class="mt-1 block w-full rounded-md border border-black shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        value="{{ old('phone') }}">
+                    <x-input-error :messages="$errors->get('phone')" class="mt-1 text-sm text-red-600" />
+                </div>
+
+                <!-- رمز عبور -->
+                <div class="mb-4">
+                    <label for="password" class="block text-sm font-medium text-blue-900">رمز عبور</label>
+                    <input id="password" name="password" type="password" required
+                        class="mt-1 block w-full rounded-md border border-black shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    <x-input-error :messages="$errors->get('password')" class="mt-1 text-sm text-red-600" />
+                </div>
+
+                <!-- مرا به خاطر بسپار -->
+                <div class="flex items-center mb-4">
+                    <input id="remember_me" name="remember" type="checkbox"
+                           class="rounded border-gray-300 text-blue-600 shadow-sm focus:ring-blue-500">
+                    <label for="remember_me" class="ms-2 text-sm text-gray-700">مرا به خاطر بسپار</label>
+                </div>
+
+                <!-- دکمه ورود و لینک‌ها -->
+                <div class="flex items-center justify-between flex-wrap gap-2">
+                    <div class="text-sm space-x-4 space-x-reverse">
+                        <a class="text-blue-600 hover:underline" href="{{ route('register') }}">
+                            هنوز ثبت‌نام نکرده‌اید؟
+                        </a>
+                    </div>
+                    <button type="submit"
+                            class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-150">
+                        ورود
+                    </button>
+                </div>
+            </form>
         </div>
-    </form>
-</x-guest-layout>
+    </div>
+</div>
+@endsection

@@ -19,11 +19,10 @@ class AuthenticatedSessionController extends Controller
             'password' => ['required', 'string'],
         ]);
 
-        // اینجا توجه کن که گارد auth به درستی مقداردهی شده باشه
         if (Auth::attempt(['phone' => $credentials['phone'], 'password' => $credentials['password']], $request->boolean('remember'))) {
             $request->session()->regenerate();
 
-            return redirect()->intended(route('dashboard'));
+            return redirect()->intended('/');
         }
 
         return back()->withErrors([

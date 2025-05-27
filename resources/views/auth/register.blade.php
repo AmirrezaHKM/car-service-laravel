@@ -1,59 +1,89 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+@extends('layouts.app')
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+@section('title', 'ثبت‌نام | سامانه نوبت‌دهی')
+
+@section('content')
+<div class="flex items-center justify-center min-h-screen px-4">
+
+    <div class="w-full max-w-4xl bg-white shadow-xl rounded-2xl overflow-hidden flex flex-col md:flex-row">
+        <!-- تصویر -->
+        <div class="md:w-1/2 hidden md:block">
+            <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=800&q=80"
+                 alt="تصویر تعمیرگاه" class="h-full w-full object-cover">
         </div>
 
-        <!-- Phone -->
-        <div class="mt-4">
-            <x-input-label for="phone" :value="__('Phone Number')" />
-            <x-text-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required />
-            <x-input-error :messages="$errors->get('phone')" class="mt-2" />
-        </div>
+        <!-- فرم -->
+        <div class="md:w-1/2 p-8">
+            <h2 class="text-2xl font-bold text-blue-700 text-center mb-6">ثبت‌نام در سامانه نوبت‌دهی</h2>
 
-        <!-- Email -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email (Optional)')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+            <form method="POST" action="{{ route('register') }}">
+                @csrf
 
-        <!-- Role -->
-        <div class="mt-4">
-            <x-input-label for="role" :value="__('Register As')" />
-            <select id="role" name="role" required class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
-                <option value="customer" {{ old('role') == 'customer' ? 'selected' : '' }}>Customer</option>
-                <option value="repairman" {{ old('role') == 'repairman' ? 'selected' : '' }}>Repairman</option>
-            </select>
-            <x-input-error :messages="$errors->get('role')" class="mt-2" />
-        </div>
+                <!-- نام -->
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium text-blue-900">نام کامل</label>
+                    <input id="name" name="name" type="text" required autofocus
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        value="{{ old('name') }}">
+                    <x-input-error :messages="$errors->get('name')" class="mt-1 text-sm text-red-600" />
+                </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+                <!-- موبایل -->
+                <div class="mb-4">
+                    <label for="phone" class="block text-sm font-medium text-blue-900">شماره موبایل</label>
+                    <input id="phone" name="phone" type="text" required
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        value="{{ old('phone') }}">
+                    <x-input-error :messages="$errors->get('phone')" class="mt-1 text-sm text-red-600" />
+                </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-            <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required />
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
+                <!-- ایمیل -->
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-blue-900">ایمیل </label>
+                    <input id="email" name="email" type="email"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                        value="{{ old('email') }}">
+                    <x-input-error :messages="$errors->get('email')" class="mt-1 text-sm text-red-600" />
+                </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
+                <!-- نقش -->
+                <div class="mb-4">
+                    <label for="role" class="block text-sm font-medium text-blue-900">ثبت‌نام به عنوان</label>
+                    <select id="role" name="role" required
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                        <option value="customer" {{ old('role') == 'customer' ? 'selected' : '' }}>مشتری</option>
+                        <option value="repairman" {{ old('role') == 'repairman' ? 'selected' : '' }}>تعمیرکار</option>
+                    </select>
+                    <x-input-error :messages="$errors->get('role')" class="mt-1 text-sm text-red-600" />
+                </div>
+
+                <!-- رمز عبور -->
+                <div class="mb-4">
+                    <label for="password" class="block text-sm font-medium text-blue-900">رمز عبور</label>
+                    <input id="password" name="password" type="password" required
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    <x-input-error :messages="$errors->get('password')" class="mt-1 text-sm text-red-600" />
+                </div>
+
+                <!-- تأیید رمز -->
+                <div class="mb-6">
+                    <label for="password_confirmation" class="block text-sm font-medium text-blue-900">تأیید رمز عبور</label>
+                    <input id="password_confirmation" name="password_confirmation" type="password" required
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-1 text-sm text-red-600" />
+                </div>
+
+                <!-- دکمه -->
+                <div class="flex items-center justify-between">
+                    <a href="{{ route('login') }}" class="text-sm text-blue-600 hover:underline">قبلاً ثبت‌نام کرده‌اید؟</a>
+                    <button type="submit"
+                        class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-150">
+                        ثبت‌نام
+                    </button>
+                </div>
+            </form>
         </div>
-    </form>
-</x-guest-layout>
+    </div>
+
+</div>
+@endsection
