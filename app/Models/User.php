@@ -57,4 +57,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Service::class, 'repairman_id');
     }
+
+    protected $appends = ['is_active'];
+
+    public function getIsActiveAttribute(): bool
+    {
+        return (bool) $this->status;
+    }
 }

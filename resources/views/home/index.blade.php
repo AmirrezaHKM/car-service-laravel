@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layouts.home.app')
 
 @section('title', 'خانه')
 
