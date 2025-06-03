@@ -29,6 +29,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/services', [HomeController::class, 'servicesList'])->name('services.list');
 Route::get('/repairmen', [HomeController::class, 'repairmenList'])->name('repairmen.list');
+Route::get('/repairmen/{id}', [HomeController::class, 'showRepairmanProfile'])->name('repairmen.profile');
+Route::get('/services/{service}', [HomeController::class, 'serviceDetail'])->name('services.detail');
 
 
 Route::prefix('admin')->name('admin.')->group(function () {

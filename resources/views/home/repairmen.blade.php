@@ -15,9 +15,11 @@
                     <p class="text-gray-600 text-sm leading-relaxed">{{ $repairman->email }}</p>
                 </div>
                 <div class="mt-auto">
-                    <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-lg shadow-md transition duration-300 ease-in-out">
-                        مشاهده پروفایل
-                    </button>
+                    <a href="{{ route('repairmen.profile', $repairman->id) }}">
+                        <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-lg shadow-md transition duration-300 ease-in-out">
+                            مشاهده پروفایل
+                        </button>
+                    </a>
                 </div>
             </div>
         @endforeach

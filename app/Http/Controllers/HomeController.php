@@ -41,4 +41,23 @@ class HomeController extends Controller
 
         return view('home.repairmen', compact('repairmen'));
     }
+
+    public function showRepairmanProfile($id)
+    {
+        $repairman = User::with(['services', 'appointments'])->findOrFail($id);
+
+        return view('home.repairmen.profile', [
+            'repairman' => $repairman,
+            'services' => $repairman->services,
+            'appointments' => $repairman->appointments,
+        ]);
+    }
+
+    public function serviceDetail(Service $service)
+{
+    return view('home.service-detail', compact('service'));
+}
+
+
+
 }

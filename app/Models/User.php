@@ -53,9 +53,15 @@ class User extends Authenticatable
         return $this->hasMany(Vehicle::class);
     }
 
+
     public function services()
     {
         return $this->hasMany(Service::class, 'repairman_id');
+    }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class, 'repairman_id');
     }
 
     protected $appends = ['is_active'];
