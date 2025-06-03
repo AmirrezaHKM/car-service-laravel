@@ -21,4 +21,6 @@ class Service extends Model
     {
         return $this->belongsTo(User::class, 'repairman_id');
     }
+
+
 }

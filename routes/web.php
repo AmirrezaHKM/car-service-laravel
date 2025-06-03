@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Appointment\AppointmentController;
 use App\Http\Controllers\CustomerPanel\CustomerPanelController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MechanicPanel\MechanicPanelController;
 
 require __DIR__.'/auth.php';
@@ -25,20 +26,9 @@ Route::middleware('auth')->group(function () {
 });
 
 /*main pages */
-Route::get('/', function () {
-    return view('home.index');
-})->name('home');
-
-Route::get('/admin', function () {
-    return view('admin\panel');
-});
-Route::get('/customer', function () {
-    return view('customer\main');
-});
-Route::get('/mechanic', function () {
-    return view('mechanic\main');
-});
-
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/services', [HomeController::class, 'servicesList'])->name('services.list');
+Route::get('/repairmen', [HomeController::class, 'repairmenList'])->name('repairmen.list');
 
 
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -70,19 +60,14 @@ Route::prefix('customerpanel')->name('customerpanel.')->group(function () {
 
     Route::get('/dashboard', [CustomerPanelController::class, 'index'])->name('dashboard');
 
-    // فرم درخواست نوبت جدید
     Route::get('/appointment/request', [AppointmentController::class, 'create'])->name('appointment.create');
 
-    // ارسال درخواست نوبت
     Route::post('/appointment/submit', [AppointmentController::class, 'store'])->name('appointment.submit');
 
-    // لغو نوبت فعلی
     Route::delete('/appointment/cancel', [AppointmentController::class, 'cancel'])->name('appointment.cancel');
 
-    // مشاهده نوبت‌های قبلی
     Route::get('/appointments/history', [AppointmentController::class, 'history'])->name('appointments.history');
 
-    // مشاهده وضعیت نوبت فعلی
     Route::get('/appointment/status', [AppointmentController::class, 'status'])->name('appointment.status');
 });
 
