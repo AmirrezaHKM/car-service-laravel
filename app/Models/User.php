@@ -23,14 +23,14 @@ class User extends Authenticatable
         'status',
     ];
 
-    protected static function booted()
-    {
-        static::saving(function ($user) {
-            if ($user->isDirty('password')) {
-                $user->password = Hash::make($user->password);
-            }
-        });
-    }
+    // protected static function booted()
+    // {
+    //     static::saving(function ($user) {
+    //         if ($user->isDirty('password')) {
+    //             $user->password = Hash::make($user->password);
+    //         }
+    //     });
+    // }
 
 
     public function getAuthIdentifierName()
@@ -63,6 +63,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Appointment::class, 'repairman_id');
     }
+
 
     protected $appends = ['is_active'];
 

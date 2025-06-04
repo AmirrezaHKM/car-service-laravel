@@ -12,12 +12,18 @@
         @guest
             <a href="{{ route('login') }}" class="hover:text-gray-300 transition">ورود</a>
             <a href="{{ route('register') }}" class="hover:text-gray-300 transition">ثبت‌نام</a>
-        @else
+            @else
 
             @if(auth()->user()->role === 'customer')
                 <a href="{{ route('customerpanel.dashboard') }}" class="hover:text-gray-300 transition">پنل مشتری</a>
             @elseif(auth()->user()->role === 'repairman')
-                <a href="{{ route('mechanicpanel.dashboard') }}" class="hover:text-gray-300 transition">پنل مکانیک</a>
+                @if(auth()->user()->status)
+                    <a href="{{ route('mechanicpanel.dashboard') }}" class="hover:text-gray-300 transition">پنل مکانیک</a>
+                @else
+                    <span class="text-red-400">شما هنوز توسط مدیر فعال نشده‌اید</span>
+                @endif
+            @elseif(auth()->user()->role === 'admin')
+            <a href="{{ route('admin.dashboard') }}" class="hover:text-gray-300 transition">پنل ادمین</a>
             @endif
 
             <a href="{{ route('profile.edit') }}" class="hover:text-gray-300 transition">پروفایل</a>
@@ -26,6 +32,8 @@
                 @csrf
                 <button type="submit" class="hover:text-gray-300 transition">خروج</button>
             </form>
+
         @endguest
+
     </div>
 </header>

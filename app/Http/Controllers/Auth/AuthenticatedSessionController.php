@@ -19,14 +19,14 @@ class AuthenticatedSessionController extends Controller
             'password' => ['required', 'string'],
         ]);
 
-        if (Auth::attempt(['phone' => $credentials['phone'], 'password' => $credentials['password']], $request->boolean('remember'))) {
+        if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/');
+            return redirect()->intended(route('home')); 
         }
 
         return back()->withErrors([
-            'phone' => 'اطلاعات ورود درست نیست.',
+            'phone' => 'شماره تلفن یا رمز عبور اشتباه است.',
         ])->onlyInput('phone');
     }
 
