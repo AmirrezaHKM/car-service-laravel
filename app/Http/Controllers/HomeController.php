@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Service;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -54,9 +55,19 @@ class HomeController extends Controller
     }
 
     public function serviceDetail(Service $service)
-{
-    return view('home.service-detail', compact('service'));
-}
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'برای مشاهده جزئیات، باید وارد حساب کاربری خود شوید.');
+        }
+
+        $isReserved = $service->appointments()->where('customer_id', $user->id)->exists();
+
+        return view('home.service-detail', compact('service', 'isReserved'));
+    }
+
+
 
 
 
