@@ -1,4 +1,4 @@
-@extends('layouts.admin.app')
+@extends('layouts.customer.app')
 
 @section('title', 'مشاهده تیکت')
 
@@ -25,13 +25,6 @@
         <div class="space-y-2 text-gray-800">
             <p><span class="font-semibold">عنوان:</span> {{ $ticket->subject }}</p>
             <p><span class="font-semibold">کاربر:</span> {{ $ticket->user->name }} <span class="text-gray-500">({{ $ticket->user->email }})</span></p>
-            <p>
-                <span class="font-semibold">وضعیت:</span>
-                <span class="inline-block px-3 py-1 rounded-full text-sm
-                    {{ $ticket->status == 'open' ? 'bg-yellow-100 text-yellow-800' : ($ticket->status == 'answered' ? 'bg-blue-100 text-blue-800' : 'bg-gray-200 text-gray-700') }}">
-                    {{ $ticket->status == 'open' ? 'باز' : ($ticket->status == 'answered' ? 'پاسخ داده شده' : 'بسته شده') }}
-                </span>
-            </p>
             <p><span class="font-semibold">تاریخ ایجاد:</span> {{ $ticket->created_at?->format('Y-m-d H:i') ?? 'نامشخص' }}</p>
         </div>
     </div>
@@ -63,7 +56,6 @@
                 <p class="text-gray-500 text-sm">هیچ پیامی برای این تیکت وجود ندارد.</p>
             @endforelse
         </div>
-
     </div>
 
     <!-- فرم پاسخ -->
@@ -71,7 +63,7 @@
         <h3 class="text-xl font-semibold mb-4 text-gray-800 flex items-center gap-2">
             <i class="bi bi-reply text-blue-600"></i> ارسال پاسخ
         </h3>
-        <form method="POST" action="{{ route('admin.tickets.reply', $ticket) }}" class="space-y-4">
+        <form method="POST" action="{{ route('customerpanel.tickets.message', $ticket) }}" class="space-y-4">
             @csrf
             <div>
                 <label for="message" class="block mb-1 font-medium text-gray-700">متن پیام</label>
@@ -83,32 +75,10 @@
         </form>
     </div>
 
-    <!-- تغییر وضعیت -->
-    <div class="bg-white p-6 rounded-xl shadow border border-gray-200">
-        <h3 class="text-xl font-semibold mb-4 text-gray-800 flex items-center gap-2">
-            <i class="bi bi-arrow-repeat text-purple-600"></i> تغییر وضعیت تیکت
-        </h3>
-        <form method="POST" action="{{ route('admin.tickets.update-status', $ticket) }}" class="space-y-4">
-            @csrf
-            @method('PUT')
-            <div>
-                <label for="status" class="block mb-1 font-medium text-gray-700">وضعیت جدید</label>
-                <select name="status" id="status" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500">
-                    <option value="open" {{ $ticket->status == 'open' ? 'selected' : '' }}>باز</option>
-                    <option value="answered" {{ $ticket->status == 'answered' ? 'selected' : '' }}>پاسخ داده شده</option>
-                    <option value="closed" {{ $ticket->status == 'closed' ? 'selected' : '' }}>بسته شده</option>
-                </select>
-            </div>
-            <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg shadow transition">
-                <i class="bi bi-check2-circle"></i> بروزرسانی وضعیت
-            </button>
-        </form>
-
-    </div>
     <div class="my-6">
-    <a href="{{ route('admin.tickets.index') }}" class="inline-flex items-center bg-indigo-50 text-indigo-700 px-4 py-2 rounded-lg hover:bg-indigo-100 transition text-sm">
-        <i class="bi bi-arrow-right-circle ml-2 text-lg"></i> بازگشت به لیست تیکت‌ها
-    </a>
+        <a href="{{ route('customerpanel.tickets.index') }}" class="inline-flex items-center bg-indigo-50 text-indigo-700 px-4 py-2 rounded-lg hover:bg-indigo-100 transition text-sm">
+            <i class="bi bi-arrow-right-circle ml-2 text-lg"></i> بازگشت به لیست تیکت‌ها
+        </a>
     </div>
 </div>
 @endsection

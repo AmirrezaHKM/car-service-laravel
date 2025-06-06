@@ -41,8 +41,8 @@
         <ul class="space-y-2">
             <li>
                 <a href="{{ route('mechanicpanel.dashboard') }}"
-                    class="flex items-center gap-3 px-4 py-2 rounded hover:bg-emerald-500 hover:text-white transition
-                   {{ request()->routeIs('mechanicpanel.dashboard') ? 'bg-emerald-600 text-white' : 'text-gray-700' }}">
+                    class="flex items-center gap-3 px-4 py-2 rounded hover:bg-blue-500 hover:text-white transition
+                   {{ request()->routeIs('mechanicpanel.dashboard') ? 'bg-blue-600 text-white' : 'text-gray-700' }}">
                     <!-- آیکون داشبورد -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
@@ -53,41 +53,42 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('mechanicpanel.dashboard') }}"
-                    class="flex items-center gap-3 px-4 py-2 rounded hover:bg-emerald-500 hover:text-white transition
-                   {{ request()->routeIs('mechanicpanel.dashboard') ? 'bg-emerald-600 text-white' : 'text-gray-700' }}">
-                    <!-- آیکون درخواست‌ها -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-                    </svg>
-                    درخواست‌های من
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('mechanicpanel.dashboard') }}"
-                    class="flex items-center gap-3 px-4 py-2 rounded hover:bg-emerald-500 hover:text-white transition
-                   {{ request()->routeIs('mechanicpanel.dashboard') ? 'bg-emerald-600 text-white' : 'text-gray-700' }}">
-                    <!-- آیکون چک‌لیست وضعیت خودرو -->
+                <a href="{{ route('mechanicpanel.services.index') }}"
+                    class="flex items-center gap-3 px-4 py-2 rounded hover:bg-blue-500 hover:text-white transition
+                   {{ request()->routeIs('mechanicpanel.services.*') ? 'bg-blue-600 text-white' : 'text-gray-700' }}">
+                    <!-- آیکون سرویس‌ها -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M9 12l2 2l4-4m1 6a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            d="M14 2l4 4m0 0l-4 4M18 6h-5a3 3 0 00-3 3v7a3 3 0 003 3h5a3 3 0 003-3V9a3 3 0 00-3-3h-5a3 3 0 00-3 3v2" />
                     </svg>
-                    چک‌لیست وضعیت خودرو
+                    سرویس‌ها
                 </a>
             </li>
             <li>
-                <a href="{{ route('mechanicpanel.dashboard') }}"
-                    class="flex items-center gap-3 px-4 py-2 rounded hover:bg-emerald-500 hover:text-white transition
-                   {{ request()->routeIs('mechanicpanel.dashboard') ? 'bg-emerald-600 text-white' : 'text-gray-700' }}">
-                    <!-- آیکون تاریخچه تعمیرات -->
+                <a href="{{ route('mechanicpanel.appointments.index') }}"
+                    class="flex items-center gap-3 px-4 py-2 rounded hover:bg-blue-500 hover:text-white transition
+                   {{ request()->routeIs('mechanicpanel.appointments.*') ? 'bg-blue-600 text-white' : 'text-gray-700' }}">
+                    <!-- آیکون نوبت‌ها -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    نوبت‌ها
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('mechanicpanel.tickets.index') }}"
+                    class="flex items-center gap-3 px-4 py-2 rounded hover:bg-blue-500 hover:text-white transition
+                   {{ request()->routeIs('mechanicpanel.tickets.*') ? 'bg-blue-600 text-white' : 'text-gray-700' }}">
+                    <!-- آیکون تیکت‌ها -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    تاریخچه تعمیرات
+                    تیکت‌ها
                 </a>
             </li>
         </ul>
@@ -96,9 +97,13 @@
     <!-- Main Content -->
     <main class="flex-1 overflow-auto fade-in">
         <header
-            class="bg-gradient-to-l from-emerald-600 to-emerald-500 text-white py-4 px-6 shadow-lg flex justify-between items-center">
+            class="bg-gradient-to-l from-blue-600 to-blue-500 text-white py-4 px-6 shadow-lg flex justify-between items-center">
             <div class="text-xl font-bold">سامانه مکانیک تعمیرگاه</div>
-            <div class="text-sm">👨‍🔧 مکانیک گرامی</div>
+            <div class="text-sm flex items-center gap-3">
+                <!-- لینک بازگشت به سایت -->
+                <a href="{{ route('home') }}" class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition">بازگشت به سایت</a>
+                <span>👨‍🔧 {{ Auth::user()->name }} عزیز</span> <!-- نمایش نام مکانیک -->
+            </div>
         </header>
 
         <section class="p-6 space-y-6">

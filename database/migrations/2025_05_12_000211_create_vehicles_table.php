@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('brand');
             $table->string('model');
             $table->string('license_plate');
-            $table->year('year');
+            $table->int('year');
             $table->timestamps();
         });
     }

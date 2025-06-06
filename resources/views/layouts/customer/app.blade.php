@@ -40,8 +40,8 @@
         <ul class="space-y-2">
             <li>
                 <a href="{{ route('customerpanel.dashboard') }}"
-                    class="flex items-center gap-3 px-4 py-2 rounded hover:bg-green-500 hover:text-white transition
-                   {{ request()->routeIs('customerpanel.dashboard') ? 'bg-green-600 text-white' : 'text-gray-700' }}">
+                    class="flex items-center gap-3 px-4 py-2 rounded hover:bg-blue-500 hover:text-white transition
+                   {{ request()->routeIs('customerpanel.dashboard') ? 'bg-blue-600 text-white' : 'text-gray-700' }}">
                     <!-- آیکون خانه -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
@@ -52,21 +52,22 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('customerpanel.dashboard') }}"
-                    class="flex items-center gap-3 px-4 py-2 rounded hover:bg-green-500 hover:text-white transition
-                   {{ request()->routeIs('customerpanel.dashboard') ? 'bg-green-600 text-white' : 'text-gray-700' }}">
-                    <!-- آیکون انتخاب مرکز -->
+                <a href="{{ route('customerpanel.vehicles.index') }}"
+                    class="flex items-center gap-3 px-4 py-2 rounded hover:bg-blue-500 hover:text-white transition
+                   {{ request()->routeIs('customerpanel.vehicles.*') ? 'bg-blue-600 text-white' : 'text-gray-700' }}">
+                    <!-- آیکون وسیله نقلیه -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 4v16m8-8H4" />
                     </svg>
-                    انتخاب مرکز خدمات
+                    وسیله نقلیه من
                 </a>
             </li>
             <li>
-                <a href="{{ route('customerpanel.dashboard') }}"
-                    class="flex items-center gap-3 px-4 py-2 rounded hover:bg-green-500 hover:text-white transition
-                   {{ request()->routeIs('customerpanel.dashboard') ? 'bg-green-600 text-white' : 'text-gray-700' }}">
+                <a href="{{ route('customerpanel.appointments.index') }}"
+                    class="flex items-center gap-3 px-4 py-2 rounded hover:bg-blue-500 hover:text-white transition
+                   {{ request()->routeIs('customerpanel.appointments.*') ? 'bg-blue-600 text-white' : 'text-gray-700' }}">
                     <!-- آیکون نوبت‌ها -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
@@ -77,16 +78,16 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('customerpanel.dashboard') }}"
-                    class="flex items-center gap-3 px-4 py-2 rounded hover:bg-green-500 hover:text-white transition
-                   {{ request()->routeIs('customerpanel.dashboard') ? 'bg-green-600 text-white' : 'text-gray-700' }}">
-                    <!-- آیکون تاریخچه -->
+                <a href="{{ route('customerpanel.tickets.index') }}"
+                    class="flex items-center gap-3 px-4 py-2 rounded hover:bg-blue-500 hover:text-white transition
+                   {{ request()->routeIs('customerpanel.tickets.*') ? 'bg-blue-600 text-white' : 'text-gray-700' }}">
+                    <!-- آیکون تیکت‌ها -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    تاریخچه درخواست‌ها
+                    تیکت‌ها
                 </a>
             </li>
         </ul>
@@ -95,9 +96,12 @@
     <!-- Main Content -->
     <main class="flex-1 overflow-auto fade-in">
         <header
-            class="bg-gradient-to-l from-emerald-600 to-emerald-500 text-white py-4 px-6 shadow-lg flex justify-between items-center">
+            class="bg-gradient-to-l from-blue-600 to-blue-500 text-white py-4 px-6 shadow-lg flex justify-between items-center">
             <div class="text-xl font-bold">سامانه مشتریان تعمیرگاه</div>
-            <div class="text-sm">👤 مشتری گرامی</div>
+            <div class="text-sm flex items-center gap-3">
+                <a href="{{ route('home') }}" class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition">بازگشت به سایت</a>
+                <span>👤 {{ Auth::user()->name }} عزیز</span>
+            </div>
         </header>
         <div class="my-10 p-6">
             @yield('content')

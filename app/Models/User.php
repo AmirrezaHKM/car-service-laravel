@@ -31,7 +31,10 @@ class User extends Authenticatable
     //         }
     //     });
     // }
-
+    public function vehicles()
+    {
+        return $this->hasMany(Vehicle::class);
+    }
 
     public function getAuthIdentifierName()
     {
@@ -47,12 +50,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(Appointment::class, 'repairman_id');
     }
-
-    public function vehicles()
-    {
-        return $this->hasMany(Vehicle::class);
-    }
-
 
     public function services()
     {

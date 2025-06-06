@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Ticket;
 use App\Models\TicketMessage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller
 {
@@ -25,14 +26,20 @@ class TicketController extends Controller
 
     public function reply(Request $request, Ticket $ticket)
     {
+
+         if ($ticket->status === 'closed') {
+            return redirect()->route('admin.tickets.show', $ticket)
+                             ->with('error', 'این تیکت بسته شده است و امکان ارسال پیام وجود ندارد.');
+        }
+        $user = Auth::user();
+
         $request->validate([
             'message' => 'required|string',
         ]);
 
         TicketMessage::create([
             'ticket_id' => $ticket->id,
-            'sender_id' => null,
-            'sender_name' => 'ادمین',
+            'sender_id' =>  $user->id,
             'message' => $request->message,
         ]);
 

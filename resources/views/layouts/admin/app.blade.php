@@ -28,7 +28,7 @@
         <h2 class="text-xl font-bold mb-6 border-b pb-3 border-gray-200">پنل مدیریت</h2>
         <ul class="space-y-2">
             <li>
-                <a href="{{ route('admin.dashboard') }}"
+                <a href="{{ route('admin.dashboard') }} "
                    class="flex items-center gap-3 px-4 py-2 rounded hover:bg-blue-500 hover:text-white transition
                    {{ request()->routeIs('admin.dashboard') ? 'bg-blue-600 text-white' : 'text-gray-700' }}">
                     <!-- آیکون داشبورد (نمونه SVG) -->
@@ -73,7 +73,7 @@
     <main class="flex-1  overflow-auto fade-in">
         <header class="bg-gradient-to-l from-indigo-600 to-indigo-500 text-white py-4 px-6 shadow-lg flex justify-between items-center">
             <div class="text-xl font-bold">سامانه مدیریت تعمیرگاه</div>
-            <div class="text-sm">👤 مدیر سیستم</div>
+            <div class="text-sm">👤 {{ Auth::user()->name }} (مدیر سیستم)</div>  <!-- نام مدیر سیستم -->
         </header>
         <div class=" my-10 p-6">
             @yield('content')

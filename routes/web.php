@@ -4,13 +4,17 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\TicketController;
+use App\Http\Controllers\Admin\TicketController as TicketAdminController ;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Appointment\AppointmentController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CustomerPanel\CustomerPanelController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MechanicPanel\MechanicPanelController;
+use App\Http\Controllers\services\ServiceController;
+use App\Http\Controllers\Tickets\Customer\TicketCustomerController;
+use App\Http\Controllers\Tickets\Mechanic\TicketMechanicController;
+use App\Http\Controllers\Vehicles\VehiclesController;
 use Illuminate\Support\Facades\Hash;
 
 require __DIR__ . '/auth.php';
@@ -53,11 +57,11 @@ Route::prefix('admin')
         });
 
         Route::prefix('tickets')->name('tickets.')->group(function () {
-            Route::get('/', [TicketController::class, 'index'])->name('index');
-            Route::get('/{ticket}', [TicketController::class, 'show'])->name('show');
-            Route::post('/{ticket}/reply', [TicketController::class, 'reply'])->name('reply');
-            Route::put('/{ticket}/status', [TicketController::class, 'updateStatus'])->name('update-status');
-            Route::delete('/{ticket}', [TicketController::class, 'destroy'])->name('destroy');
+            Route::get('/', [TicketAdminController::class, 'index'])->name('index');
+            Route::get('/{ticket}', [TicketAdminController::class, 'show'])->name('show');
+            Route::post('/{ticket}/reply', [TicketAdminController::class, 'reply'])->name('reply');
+            Route::put('/{ticket}/status', [TicketAdminController::class, 'updateStatus'])->name('update-status');
+            Route::delete('/{ticket}', [TicketAdminController::class, 'destroy'])->name('destroy');
         });
 });
 
@@ -66,25 +70,72 @@ Route::prefix('customerpanel')
     ->name('customerpanel.')
     ->middleware(['auth', 'customer'])
     ->group(function () {
+
         Route::get('/dashboard', [CustomerPanelController::class, 'index'])->name('dashboard');
-        Route::get('/appointment/request', [AppointmentController::class, 'create'])->name('appointment.create');
-        Route::post('/appointment/submit', [AppointmentController::class, 'store'])->name('appointment.submit');
-        Route::delete('/appointment/cancel', [AppointmentController::class, 'cancel'])->name('appointment.cancel');
-        Route::get('/appointments/history', [AppointmentController::class, 'history'])->name('appointments.history');
-        Route::get('/appointment/status', [AppointmentController::class, 'status'])->name('appointment.status');
+
+        Route::prefix('vehicles')->name('vehicles.')->group(function () {
+            Route::get('/', [VehiclesController::class, 'index'])->name('index');
+            Route::get('/create', [VehiclesController::class, 'create'])->name('create');
+            Route::post('/', [VehiclesController::class, 'store'])->name('store');
+            Route::get('/{vehicle}/edit', [VehiclesController::class, 'edit'])->name('edit');
+            Route::put('/{vehicle}', [VehiclesController::class, 'update'])->name('update');
+            Route::delete('/{vehicle}', [VehiclesController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::prefix('appointments')->name('appointments.')->group(function () {
+            Route::get('/', [AppointmentController::class, 'index'])->name('index');
+            Route::get('/create', [AppointmentController::class, 'create'])->name('create');
+            Route::post('/', [AppointmentController::class, 'store'])->name('store');
+            Route::get('/{appointment}/edit', [AppointmentController::class, 'edit'])->name('edit');
+            Route::put('/{appointment}', [AppointmentController::class, 'update'])->name('update');
+            Route::delete('/{appointment}', [AppointmentController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::prefix('tickets')->name('tickets.')->group(function () {
+            Route::get('/', [TicketCustomerController ::class, 'index'])->name('index');
+            Route::post('/', [TicketCustomerController::class, 'store'])->name('store');
+            Route::get('/create', [TicketCustomerController::class, 'create'])->name('create');
+            Route::get('/{ticket}', [TicketCustomerController ::class, 'show'])->name('show');
+            Route::post('/{ticket}/message', [TicketCustomerController ::class, 'message'])->name('message');
+            Route::put('/{ticket}/status', [TicketCustomerController ::class, 'updateStatus'])->name('update-status');
+            Route::delete('/{ticket}', [TicketCustomerController ::class, 'destroy'])->name('destroy');
+        });
     });
 
 
-
-Route::prefix('mechanicpanel')
+    Route::prefix('mechanicpanel')
     ->name('mechanicpanel.')
     ->middleware(['auth', 'mechanic'])
     ->group(function () {
+
         Route::get('/dashboard', [MechanicPanelController::class, 'index'])->name('dashboard');
-        Route::get('/appointments', [AppointmentController::class, 'index'])->name('appointments.index');
-        Route::get('/appointment/{id}', [AppointmentController::class, 'show'])->name('appointment.show');
-        Route::post('/appointment/{id}/update-status', [AppointmentController::class, 'updateStatus'])->name('appointment.updateStatus');
-        Route::post('/appointment/{id}/start', [AppointmentController::class, 'startWork'])->name('appointment.startWork');
-        Route::post('/appointment/{id}/finish', [AppointmentController::class, 'finishWork'])->name('appointment.finishWork');
-        Route::get('/work-history', [AppointmentController::class, 'workHistory'])->name('workHistory');
+
+        Route::prefix('services')->name('services.')->group(function () {
+            Route::get('/', [ServiceController::class, 'index'])->name('index');
+            Route::get('/create', [ServiceController::class, 'create'])->name('create');
+            Route::post('/', [ServiceController::class, 'store'])->name('store');
+            Route::get('/{service}/edit', [ServiceController::class, 'edit'])->name('edit');
+            Route::put('/{service}', [ServiceController::class, 'update'])->name('update');
+            Route::delete('/{service}', [ServiceController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::prefix('appointments')->name('appointments.')->group(function () {
+            Route::get('/', [AppointmentController::class, 'index'])->name('index'); // نمایش لیست نوبت‌ها
+            Route::get('/create', [AppointmentController::class, 'create'])->name('create'); // ایجاد نوبت جدید
+            Route::post('/', [AppointmentController::class, 'store'])->name('store'); // ذخیره نوبت جدید
+            Route::get('/{appointment}/edit', [AppointmentController::class, 'edit'])->name('edit'); // ویرایش نوبت
+            Route::put('/{appointment}', [AppointmentController::class, 'update'])->name('update'); // بروزرسانی نوبت
+            Route::delete('/{appointment}', [AppointmentController::class, 'destroy'])->name('destroy'); // حذف نوبت
+        });
+
+        Route::prefix('tickets')->name('tickets.')->group(function () {
+            Route::get('/', [TicketMechanicController ::class, 'index'])->name('index');
+            Route::post('/', [TicketMechanicController::class, 'store'])->name('store');
+            Route::get('/create', [TicketMechanicController::class, 'create'])->name('create');
+            Route::get('/{ticket}', [TicketMechanicController ::class, 'show'])->name('show');
+            Route::post('/{ticket}/message', [TicketMechanicController ::class, 'message'])->name('message');
+            Route::put('/{ticket}/status', [TicketMechanicController ::class, 'updateStatus'])->name('update-status');
+            Route::delete('/{ticket}', [TicketMechanicController ::class, 'destroy'])->name('destroy');
+        });
     });
+

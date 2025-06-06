@@ -16,6 +16,7 @@
                     <th class="py-3 px-4 text-right">شناسه</th>
                     <th class="py-3 px-4 text-right">موضوع</th>
                     <th class="py-3 px-4 text-right">کاربر</th>
+                    <th class="py-3 px-4 text-right">نقش کاربر</th> {{-- اضافه کردن ستون نقش --}}
                     <th class="py-3 px-4 text-right">وضعیت</th>
                     <th class="py-3 px-4 text-right">تاریخ ایجاد</th>
                     <th class="py-3 px-4 text-right">عملیات</th>
@@ -27,6 +28,15 @@
                         <td class="py-3 px-4 text-right">{{ $ticket->id }}</td>
                         <td class="py-3 px-4 text-right">{{ $ticket->subject }}</td>
                         <td class="py-3 px-4 text-right">{{ $ticket->user->name }}</td>
+                        <td class="py-3 px-4 text-right">
+                            @if($ticket->user->role == 'customer')
+                                <span class="text-green-600 font-semibold">مشتری</span>
+                            @elseif($ticket->user->role == 'repairman')
+                                <span class="text-green-600 font-semibold">تعمیرکار</span>
+                            @else
+                                <span class="text-gray-600 font-semibold">نامشخص</span>
+                            @endif
+                        </td>
                         <td class="py-3 px-4 text-right">
                             @if($ticket->status == 'open')
                                 <span class="text-green-600 font-semibold">باز</span>
@@ -49,7 +59,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6" class="text-center py-6 text-gray-500">تیکتی وجود ندارد.</td>
+                        <td colspan="7" class="text-center py-6 text-gray-500">تیکتی وجود ندارد.</td>
                     </tr>
                 @endforelse
             </tbody>
