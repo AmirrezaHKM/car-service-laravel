@@ -31,6 +31,21 @@ class User extends Authenticatable
     //         }
     //     });
     // }
+    // متدهای مربوط به شمارش نوبت‌ها بر اساس وضعیت
+    public function getPendingAppointmentsCount()
+    {
+        return $this->appointmentsAsCustomer()->where('status', 'pending')->count();
+    }
+
+    public function getConfirmedAppointmentsCount()
+    {
+        return $this->appointmentsAsCustomer()->where('status', 'accepted')->count();
+    }
+
+    public function getCompletedAppointmentsCount()
+    {
+        return $this->appointmentsAsCustomer()->where('status', 'completed')->count();
+    }
     public function vehicles()
     {
         return $this->hasMany(Vehicle::class);
@@ -60,7 +75,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Appointment::class, 'repairman_id');
     }
-
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class, 'user_id');
+    }
 
     protected $appends = ['is_active'];
 

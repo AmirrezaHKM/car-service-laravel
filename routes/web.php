@@ -6,8 +6,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\TicketController as TicketAdminController ;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Appointment\AppointmentController;
 use App\Http\Controllers\Appointment\Customer\CustomerAppointmentController;
+use App\Http\Controllers\Appointment\Repairman\RepairmanAppointmentController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CustomerPanel\CustomerPanelController;
 use App\Http\Controllers\HomeController;
@@ -122,22 +122,33 @@ Route::prefix('customerpanel')
         });
 
         Route::prefix('appointments')->name('appointments.')->group(function () {
-            Route::get('/', [AppointmentController::class, 'index'])->name('index'); // نمایش لیست نوبت‌ها
-            Route::get('/create', [AppointmentController::class, 'create'])->name('create'); // ایجاد نوبت جدید
-            Route::post('/', [AppointmentController::class, 'store'])->name('store'); // ذخیره نوبت جدید
-            Route::get('/{appointment}/edit', [AppointmentController::class, 'edit'])->name('edit'); // ویرایش نوبت
-            Route::put('/{appointment}', [AppointmentController::class, 'update'])->name('update'); // بروزرسانی نوبت
-            Route::delete('/{appointment}', [AppointmentController::class, 'destroy'])->name('destroy'); // حذف نوبت
+            Route::get('/', [RepairmanAppointmentController::class, 'index'])->name('index');
+            Route::get('/{appointment}', [RepairmanAppointmentController::class, 'show'])->name('show');
+            Route::get('/{appointment}/edit', [RepairmanAppointmentController::class, 'edit'])->name('edit');
+            Route::put('/{appointment}', [RepairmanAppointmentController::class, 'update'])->name('update');
+            Route::delete('/{appointment}', [RepairmanAppointmentController::class, 'destroy'])->name('destroy');
+
+            // روت‌های مربوط به چک‌لیست
+            Route::get('/{appointment}/checklist', [RepairmanAppointmentController::class, 'showChecklistForm'])->name('checklist.form');
+            Route::post('/{appointment}/checklist', [RepairmanAppointmentController::class, 'storeChecklist'])->name('checklist.store');
+            Route::put('/{appointment}/checklist', [RepairmanAppointmentController::class, 'updateChecklist'])->name('checklist.update');
+            Route::delete('/{appointment}/checklist', [RepairmanAppointmentController::class, 'deleteChecklist'])->name('checklist.delete');
+
+            Route::get('/{appointment}/service_report', [RepairmanAppointmentController::class, 'showServiceReportForm'])->name('service_report.form');
+            Route::post('/{appointment}/service_report', [RepairmanAppointmentController::class, 'storeServiceReport'])->name('service_report.store');
+            Route::put('/{appointment}/service_report', [RepairmanAppointmentController::class, 'updateServiceReport'])->name('service_report.update');
+            Route::delete('/{appointment}/service_report', [RepairmanAppointmentController::class, 'deleteServiceReport'])->name('service_report.delete');
         });
 
         Route::prefix('tickets')->name('tickets.')->group(function () {
-            Route::get('/', [TicketMechanicController ::class, 'index'])->name('index');
+            Route::get('/', [TicketMechanicController::class, 'index'])->name('index');
             Route::post('/', [TicketMechanicController::class, 'store'])->name('store');
             Route::get('/create', [TicketMechanicController::class, 'create'])->name('create');
-            Route::get('/{ticket}', [TicketMechanicController ::class, 'show'])->name('show');
-            Route::post('/{ticket}/message', [TicketMechanicController ::class, 'message'])->name('message');
-            Route::put('/{ticket}/status', [TicketMechanicController ::class, 'updateStatus'])->name('update-status');
-            Route::delete('/{ticket}', [TicketMechanicController ::class, 'destroy'])->name('destroy');
+            Route::get('/{ticket}', [TicketMechanicController::class, 'show'])->name('show');
+            Route::post('/{ticket}/message', [TicketMechanicController::class, 'message'])->name('message');
+            Route::put('/{ticket}/status', [TicketMechanicController::class, 'updateStatus'])->name('update-status');
+            Route::delete('/{ticket}', [TicketMechanicController::class, 'destroy'])->name('destroy');
         });
     });
+
 

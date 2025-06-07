@@ -1,4 +1,4 @@
-@extends('layouts.customer.app')
+@extends('layouts.mechanic.app')
 
 @section('content')
 <div class="container mx-auto p-6">
@@ -17,14 +17,13 @@
                         </h3>
                     </div>
 
-
-                    <!-- وسیله نقلیه و تعمیرکار -->
+                    <!-- وسیله نقلیه و مشتری -->
                     <div class=" mb-4 text-gray-700">
                         <div class="text-sm mb-4">
                             <strong>وسیله نقلیه:</strong> {{ $appointment->vehicle->brand ?? 'نامشخص' }}
                         </div>
                         <div class="text-sm mb-4">
-                            <strong>تعمیرکار:</strong> {{ $appointment->repairman->name ?? 'نامشخص' }}
+                            <strong>مشتری:</strong> {{ $appointment->customer->name ?? 'نامشخص' }}
                         </div>
                     </div>
 
@@ -55,14 +54,15 @@
                             {{ ucfirst($appointment->status) }}
                         </span>
                     </div>
+
                     <!-- دکمه مشاهده جزییات -->
                     <div class="flex justify-between items-center mt-4">
-                        <a href="{{ route('customerpanel.appointments.show', $appointment->id) }}"
+                        <a href="{{ route('mechanicpanel.appointments.show', $appointment->id) }}"
                            class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200">
                            مشاهده جزییات
                         </a>
                         @if($appointment->status == 'pending')
-                            <span class="text-xs text-gray-500">منتظر تایید</span>
+                            <span class="text-xs text-gray-500">هنوز تایید نکرده اید </span>
                         @endif
                     </div>
                 </div>

@@ -14,8 +14,8 @@ class CustomerAppointmentController extends Controller
         $user = Auth::user();
 
         $appointments = Appointment::with(['service', 'vehicle', 'repairman'])
-                                    ->where('customer_id', $user->id)
-                                    ->get();
+            ->where('customer_id', $user->id)
+            ->get();
 
         return view('customer.appointments.index', compact('appointments'));
     }
@@ -45,8 +45,45 @@ class CustomerAppointmentController extends Controller
         ]);
 
         return redirect()->route('services.list', $validated['service_id'])
-                         ->with('success', 'درخواست نوبت با موفقیت ثبت شد.');
+            ->with('success', 'درخواست نوبت با موفقیت ثبت شد.');
+    }
+    public function show($appointment)
+    {
+        $appointment = Appointment::with(['checklist', 'serviceReport'])->findOrFail($appointment);
+        return view('customer.appointments.show', compact('appointment'));
     }
 
 
+
+    public function update(Request $request, $appointment)
+    {
+        $appointment = Appointment::findOrFail($appointment);
+
+        $request->validate([
+            'proposed_time' => 'nullable|date',
+            'customer_note' => 'nullable|string',
+        ]);
+
+        $appointment->update([
+            'proposed_time' => $request->proposed_time,
+            'customer_note' => $request->customer_note,
+        ]);
+
+        return redirect()->route('customerpanel.appointments.index')->with('success', 'نوبت با موفقیت ویرایش شد.');
+    }
+
+    public function destroy($id)
+    {
+        $user = Auth::user();
+
+        $appointment = Appointment::findOrFail($id);
+
+        if ($appointment->customer_id !== $user->id) {
+            return redirect()->route('customerpanel.appointments.index')->with('error', 'شما اجازه حذف این نوبت را ندارید.');
+        }
+
+        $appointment->delete();
+
+        return redirect()->route('customerpanel.appointments.index')->with('success', 'نوبت با موفقیت حذف شد.');
+    }
 }
