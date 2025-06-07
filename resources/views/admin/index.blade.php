@@ -4,7 +4,6 @@
 
 @section('content')
 <div class="max-w-7xl mx-auto py-10 px-6">
-    <!-- خوش‌آمدگویی -->
     <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200 mb-8">
         <h1 class="text-2xl font-bold text-gray-800 mb-2 flex items-center gap-2">
             <i class="bi bi-speedometer2 text-indigo-600 text-2xl"></i>
@@ -13,7 +12,6 @@
         <p class="text-gray-600 text-sm">در این بخش می‌توانید آمار کلی، تیکت‌ها، کاربران، و فعالیت‌های اخیر را مشاهده کنید.</p>
     </div>
 
-    <!-- کارت‌های آماری -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         <div class="bg-indigo-50 p-5 rounded-xl shadow-sm border border-indigo-100">
             <div class="flex items-center justify-between">
@@ -38,7 +36,6 @@
 
     </div>
 
-    <!-- لینک‌های سریع -->
     <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
         <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
             <i class="bi bi-lightning-fill text-purple-600"></i>

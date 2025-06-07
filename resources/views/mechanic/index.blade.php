@@ -5,7 +5,6 @@
 @section('content')
     <div class="container mx-auto p-6">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- کارت خوشامدگویی -->
             <div class="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 p-6 rounded-lg shadow-xl text-white fade-in">
                 <h2 class="text-2xl font-semibold">خوش آمدید {{ Auth::user()->name }} عزیز</h2>
                 <p class="mt-2">به پنل مکانیکی تعمیرگاه خوش آمدید. در اینجا می‌توانید نوبت‌ها، سرویس‌ها و تیکت‌های خود را مدیریت کنید.</p>
@@ -17,7 +16,6 @@
                 </div>
             </div>
 
-            <!-- کارت وضعیت نوبت‌ها -->
             <div class="bg-white p-6 rounded-lg shadow-xl fade-in">
                 <h2 class="text-2xl font-semibold text-blue-600">وضعیت نوبت‌ها</h2>
                 <div class="mt-6 space-y-4">
@@ -36,7 +34,6 @@
                 </div>
             </div>
 
-            <!-- کارت سرویس‌ها -->
             <div class="bg-white p-6 rounded-lg shadow-xl fade-in">
                 <h2 class="text-2xl font-semibold text-blue-600">سرویس‌های شما</h2>
                 <div class="mt-4 space-y-4">
@@ -55,7 +52,6 @@
             </div>
         </div>
 
-        <!-- بخش تیکت‌ها -->
         <div class="mt-8 bg-white p-6 rounded-lg shadow-xl fade-in">
             <h2 class="text-2xl font-semibold text-blue-600">تیکت‌های شما</h2>
             <div class="mt-6 space-y-4">

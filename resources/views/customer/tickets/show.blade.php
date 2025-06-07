@@ -4,20 +4,17 @@
 
 @section('content')
 <div class="max-w-4xl mx-auto py-8 px-4">
-    <!-- پیام ارور -->
     @if(session('error'))
         <div class="bg-red-600 text-white p-4 rounded-lg mb-6">
             {{ session('error') }}
         </div>
     @endif
 
-    <!-- پیام موفقیت -->
     @if(session('success'))
         <div class="bg-green-100 text-green-800 p-4 rounded-lg mb-6">
             {{ session('success') }}
         </div>
     @endif
-    <!-- اطلاعات تیکت -->
     <div class="bg-white shadow-lg rounded-2xl p-6 mb-8 border border-gray-200">
         <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
             <i class="bi bi-ticket-detailed text-indigo-500 text-2xl"></i> جزئیات تیکت
@@ -29,7 +26,6 @@
         </div>
     </div>
 
-    <!-- پیام‌ها -->
     <div class="mb-10">
         <h3 class="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-800">
             <i class="bi bi-chat-left-dots text-green-600 text-xl"></i> پیام‌ها

@@ -66,7 +66,6 @@ class RepairmanAppointmentController extends Controller
         return view('mechanic.appointments.checklist', compact('appointment'));
     }
 
-    // اضافه کردن چک‌لیست
     public function storeChecklist(Request $request, $appointmentId)
     {
         $appointment = Appointment::findOrFail($appointmentId);
@@ -78,7 +77,6 @@ class RepairmanAppointmentController extends Controller
         return redirect()->route('mechanicpanel.appointments.index')->with('success', 'چک‌لیست با موفقیت اضافه شد.');
     }
 
-    // ویرایش چک‌لیست
     public function updateChecklist(Request $request, $appointmentId)
     {
         $appointment = Appointment::findOrFail($appointmentId);
@@ -92,7 +90,6 @@ class RepairmanAppointmentController extends Controller
         return redirect()->route('mechanicpanel.appointments.index')->with('success', 'چک‌لیست با موفقیت بروزرسانی شد.');
     }
 
-    // حذف چک‌لیست
     public function deleteChecklist($appointmentId)
     {
         $appointment = Appointment::findOrFail($appointmentId);
@@ -112,14 +109,12 @@ class RepairmanAppointmentController extends Controller
     {
         $appointment = Appointment::findOrFail($appointmentId);
 
-        // اعتبارسنجی داده‌ها
         $validated = $request->validate([
             'services_performed' => 'required|string',
             'final_price' => 'required|numeric',
             'additional_notes' => 'nullable|string',
         ]);
 
-        // ذخیره گزارش خدمات
         ServiceReport::create([
             'appointment_id' => $appointmentId,
             'services_performed' => $validated['services_performed'],
@@ -135,14 +130,12 @@ class RepairmanAppointmentController extends Controller
         $appointment = Appointment::findOrFail($appointmentId);
         $serviceReport = $appointment->serviceReport;
 
-        // اعتبارسنجی داده‌ها
         $validated = $request->validate([
             'services_performed' => 'required|string',
             'final_price' => 'required|numeric',
             'additional_notes' => 'nullable|string',
         ]);
 
-        // به‌روزرسانی گزارش خدمات
         $serviceReport->update([
             'services_performed' => $validated['services_performed'],
             'final_price' => $validated['final_price'],

@@ -4,7 +4,6 @@
 <div class="container mx-auto">
     <h1 class="text-2xl font-bold mb-6">لیست تیکت‌ها</h1>
 
-    <!-- دکمه افزودن تیکت جدید در سمت چپ -->
     <div class="mb-8 text-left">
         <a href="{{ route('mechanicpanel.tickets.create') }}" class=" bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition">
             افزودن تیکت جدید

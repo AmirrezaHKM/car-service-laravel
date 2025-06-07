@@ -31,7 +31,6 @@ class User extends Authenticatable
     //         }
     //     });
     // }
-    // متدهای مربوط به شمارش نوبت‌ها بر اساس وضعیت
     public function getPendingAppointmentsCount()
     {
         return $this->appointmentsAsCustomer()->where('status', 'pending')->count();

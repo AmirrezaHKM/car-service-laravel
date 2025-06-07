@@ -7,7 +7,6 @@
     <form action="{{ route('mechanicpanel.tickets.store') }}" method="POST" class="bg-white shadow-lg rounded-lg p-6">
         @csrf
 
-        <!-- موضوع تیکت -->
         <div class="mb-6">
             <label for="subject" class="block text-lg font-medium text-gray-700">موضوع تیکت</label>
             <input
@@ -24,7 +23,6 @@
             @enderror
         </div>
 
-        <!-- دکمه ارسال -->
         <div class="mb-6 flex justify-end">
             <button
                 type="submit"

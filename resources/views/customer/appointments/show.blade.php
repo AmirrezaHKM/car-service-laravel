@@ -5,14 +5,11 @@
     <h1 class="text-3xl font-semibold text-indigo-700 mb-8 text-center">جزییات نوبت</h1>
 
     <div class="p-8 bg-white rounded-lg shadow-lg space-y-6">
-        <!-- فرم برای ارسال اطلاعات -->
         <form action="{{ route('customerpanel.appointments.update', $appointment->id) }}" method="POST">
             @csrf
             @method('PUT')
 
-            <!-- بخش اطلاعات نوبت -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <!-- نام وسیله نقلیه -->
                 <div class="flex flex-col">
                     <label for="vehicle_id" class="text-lg font-semibold text-gray-800">وسیله نقلیه</label>
                     <div class="mt-2 p-4 bg-gray-100 rounded-lg text-gray-700">
@@ -20,7 +17,6 @@
                     </div>
                 </div>
 
-                <!-- نام تعمیرکار -->
                 <div class="flex flex-col">
                     <label for="repairman_id" class="text-lg font-semibold text-gray-800">تعمیرکار</label>
                     <div class="mt-2 p-4 bg-gray-100 rounded-lg text-gray-700">
@@ -28,7 +24,6 @@
                     </div>
                 </div>
 
-                <!-- نام سرویس -->
                 <div class="flex flex-col">
                     <label for="service_id" class="text-lg font-semibold text-gray-800">خدمت</label>
                     <div class="mt-2 p-4 bg-gray-100 rounded-lg text-gray-700">
@@ -36,7 +31,6 @@
                     </div>
                 </div>
 
-                <!-- وضعیت -->
                 <div class="flex flex-col">
                     <label for="status" class="text-lg font-semibold text-gray-800">وضعیت</label>
                     <div class="mt-2 p-4 bg-gray-100 rounded-lg text-gray-700">
@@ -46,7 +40,6 @@
                     </div>
                 </div>
 
-                <!-- زمان نوبت -->
                 <div class="flex flex-col">
                     <label for="appointment_time" class="text-lg font-semibold text-gray-800">زمان نوبت</label>
                     <div class="mt-2 p-4 bg-gray-100 rounded-lg text-gray-700">
@@ -54,20 +47,17 @@
                     </div>
                 </div>
 
-                <!-- زمان پیشنهادی -->
                 <div class="flex flex-col">
                     <label for="proposed_time" class="text-lg font-semibold text-gray-800">زمان پیشنهادی</label>
                     <input type="datetime-local" id="proposed_time" name="proposed_time" value="{{ $appointment->proposed_time ? $appointment->proposed_time->format('Y-m-d\TH:i') : '' }}" class="mt-2 p-4 bg-gray-100 rounded-lg w-full">
                 </div>
             </div>
 
-            <!-- بخش یادداشت مشتری -->
             <div class="flex flex-col">
                 <label for="customer_note" class="text-lg font-semibold text-gray-800">یادداشت مشتری</label>
                 <textarea id="customer_note" name="customer_note" rows="4" class="mt-2 p-4 bg-gray-100 rounded-lg w-full">{{ $appointment->customer_note }}</textarea>
             </div>
 
-            <!-- بخش یادداشت تعمیرکار -->
             @if ($appointment->repairman_note)
             <div class="flex flex-col mt-6">
                 <label for="repairman_note" class="text-lg font-semibold text-gray-800">یادداشت تعمیرکار</label>
@@ -84,20 +74,17 @@
             </div>
             @endif
 
-            <!-- دکمه‌های ویرایش -->
             <div class="flex justify-start space-x-4 mt-6 gap-3">
                 <a href="{{ route('customerpanel.appointments.index') }}" class="inline-block bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200">
                     برگشت
                 </a>
 
-                <!-- دکمه ویرایش (برای ارسال فرم) -->
                 <button type="submit" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200">
                     ذخیره تغییرات
                 </button>
             </div>
         </form>
 
-        <!-- بخش چک‌لیست تعمیرات -->
         @if ($appointment->checklist)
         <div class="p-6 bg-gray-50 rounded-lg shadow-md mt-8">
             <h3 class="text-2xl font-semibold text-gray-800 mb-4">چک‌لیست تعمیرات</h3>
@@ -118,7 +105,6 @@
         </div>
         @endif
 
-        <!-- بخش گزارش نوبت -->
         @if ($appointment->serviceReport)
         <div class="p-6 bg-gray-50 rounded-lg shadow-md mt-8">
             <h3 class="text-2xl font-semibold text-gray-800 mb-4">گزارش نوبت</h3>
@@ -143,7 +129,6 @@
         </div>
         @endif
 
-        <!-- فرم حذف نوبت -->
         <form action="{{ route('customerpanel.appointments.destroy', $appointment->id) }}" method="POST" class="mt-6">
             @csrf
             @method('DELETE')

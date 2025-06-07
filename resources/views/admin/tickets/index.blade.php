@@ -1,4 +1,4 @@
-@extends('layouts.admin.app') {{-- فرض بر اینه که این فایل شامل قالب کلی پنل هست --}}
+@extends('layouts.admin.app')
 
 @section('content')
     <div class="container mx-auto">
@@ -16,7 +16,7 @@
                     <th class="py-3 px-4 text-right">شناسه</th>
                     <th class="py-3 px-4 text-right">موضوع</th>
                     <th class="py-3 px-4 text-right">کاربر</th>
-                    <th class="py-3 px-4 text-right">نقش کاربر</th> {{-- اضافه کردن ستون نقش --}}
+                    <th class="py-3 px-4 text-right">نقش کاربر</th>
                     <th class="py-3 px-4 text-right">وضعیت</th>
                     <th class="py-3 px-4 text-right">تاریخ ایجاد</th>
                     <th class="py-3 px-4 text-right">عملیات</th>
@@ -66,7 +66,7 @@
         </table>
 
         <div class="mt-6">
-            {{ $tickets->links() }} {{-- پیجینیشن لاراول --}}
+            {{ $tickets->links() }}
         </div>
     </div>
 @endsection

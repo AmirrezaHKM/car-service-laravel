@@ -128,7 +128,6 @@ Route::prefix('customerpanel')
             Route::put('/{appointment}', [RepairmanAppointmentController::class, 'update'])->name('update');
             Route::delete('/{appointment}', [RepairmanAppointmentController::class, 'destroy'])->name('destroy');
 
-            // روت‌های مربوط به چک‌لیست
             Route::get('/{appointment}/checklist', [RepairmanAppointmentController::class, 'showChecklistForm'])->name('checklist.form');
             Route::post('/{appointment}/checklist', [RepairmanAppointmentController::class, 'storeChecklist'])->name('checklist.store');
             Route::put('/{appointment}/checklist', [RepairmanAppointmentController::class, 'updateChecklist'])->name('checklist.update');

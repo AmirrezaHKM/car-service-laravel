@@ -8,7 +8,7 @@
 
     <form action="{{ route('customerpanel.vehicles.update', $vehicle->id) }}" method="POST" class="space-y-6 bg-white p-8 rounded-xl shadow-lg">
         @csrf
-        @method('PUT') <!-- برای بروزرسانی اطلاعات از PUT استفاده می‌کنیم -->
+        @method('PUT')
 
         <div class="space-y-4">
             <div>

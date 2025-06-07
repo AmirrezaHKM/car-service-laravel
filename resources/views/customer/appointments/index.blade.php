@@ -11,14 +11,12 @@
             @foreach ($appointments as $appointment)
                 <div class="p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
                     <div class="mb-6">
-                        <!-- عنوان سرویس -->
                         <h3 class="font-semibold text-xl text-indigo-800">
                             <strong>خدمت:</strong> {{ $appointment->service->title ?? 'نامشخص' }}
                         </h3>
                     </div>
 
 
-                    <!-- وسیله نقلیه و تعمیرکار -->
                     <div class=" mb-4 text-gray-700">
                         <div class="text-sm mb-4">
                             <strong>وسیله نقلیه:</strong> {{ $appointment->vehicle->brand ?? 'نامشخص' }}
@@ -28,7 +26,6 @@
                         </div>
                     </div>
 
-                    <!-- زمان نوبت -->
                     <div class="mb-4">
                         <strong>زمان نوبت:</strong>
                         @if ($appointment->appointment_time)
@@ -38,7 +35,6 @@
                         @endif
                     </div>
 
-                    <!-- زمان پیشنهادی -->
                     <div class="mb-4">
                         <strong>زمان پیشنهادی:</strong>
                         @if ($appointment->proposed_time)
@@ -48,14 +44,12 @@
                         @endif
                     </div>
 
-                    <!-- وضعیت -->
                     <div class="mb-4">
                         <strong class="text-gray-600">وضعیت: </strong>
                         <span class="text-sm font-medium {{ $appointment->status == 'pending' ? 'text-yellow-600' : ($appointment->status == 'accepted' ? 'text-green-600' : 'text-gray-600') }}">
                             {{ ucfirst($appointment->status) }}
                         </span>
                     </div>
-                    <!-- دکمه مشاهده جزییات -->
                     <div class="flex justify-between items-center mt-4">
                         <a href="{{ route('customerpanel.appointments.show', $appointment->id) }}"
                            class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200">

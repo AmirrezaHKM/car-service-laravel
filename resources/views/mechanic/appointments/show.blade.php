@@ -9,9 +9,7 @@
                 @csrf
                 @method('PUT')
 
-                <!-- بخش اطلاعات نوبت -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <!-- نام وسیله نقلیه -->
                     <div class="flex flex-col">
                         <label for="vehicle_id" class="text-lg font-semibold text-gray-800">وسیله نقلیه</label>
                         <div class="mt-2 p-4 bg-gray-100 rounded-lg text-gray-700">
@@ -19,7 +17,6 @@
                         </div>
                     </div>
 
-                    <!-- نام مشتری -->
                     <div class="flex flex-col">
                         <label for="customer_id" class="text-lg font-semibold text-gray-800">مشتری</label>
                         <div class="mt-2 p-4 bg-gray-100 rounded-lg text-gray-700">
@@ -27,7 +24,6 @@
                         </div>
                     </div>
 
-                    <!-- نام سرویس -->
                     <div class="flex flex-col">
                         <label for="service_id" class="text-lg font-semibold text-gray-800">خدمت</label>
                         <div class="mt-2 p-4 bg-gray-100 rounded-lg text-gray-700">
@@ -35,7 +31,6 @@
                         </div>
                     </div>
 
-                    <!-- وضعیت -->
                     <div class="flex flex-col">
                         <label for="status" class="text-lg font-semibold text-gray-800">وضعیت</label>
                         <select name="status" id="status" class="mt-2 p-4 bg-indigo-100 rounded-lg w-full">
@@ -52,7 +47,6 @@
                         </select>
                     </div>
 
-                    <!-- زمان نوبت -->
                     <div class="flex flex-col">
                         <label for="appointment_time" class="text-lg font-semibold text-gray-800">زمان نوبت</label>
                         <input type="datetime-local" id="appointment_time" name="appointment_time"
@@ -60,7 +54,6 @@
                             class="mt-2 p-4 bg-indigo-100 rounded-lg w-full">
                     </div>
 
-                    <!-- زمان پیشنهادی مشتری -->
                     <div class="flex flex-col">
                         <label for="final_time" class="text-lg font-semibold text-gray-800">زمان پیشنهادی مشتری</label>
                         <input type="datetime-local" id="final_time" name="final_time"
@@ -68,21 +61,18 @@
                             class="mt-2 p-4 bg-gray-300 rounded-lg w-full" readonly>
                     </div>
 
-                    <!-- یادداشت مشتری -->
                     <div class="flex flex-col">
                         <label for="customer_note" class="text-lg font-semibold text-gray-800">یادداشت مشتری</label>
                         <textarea id="customer_note" name="customer_note" rows="4" class="mt-2 p-4 bg-gray-100 rounded-lg w-full"
                             readonly>{{ $appointment->customer_note }}</textarea>
                     </div>
 
-                    <!-- یادداشت تعمیرکار -->
                     <div class="flex flex-col">
                         <label for="repairman_note" class="text-lg font-semibold text-gray-800">یادداشت تعمیرکار</label>
                         <textarea id="repairman_note" name="repairman_note" rows="4" class="mt-2 p-4 bg-indigo-100 rounded-lg w-full">{{ $appointment->repairman_note }}</textarea>
                     </div>
                 </div>
 
-                <!-- دکمه ذخیره -->
                 <div class="flex justify-start space-x-4 mt-6 gap-3">
                     <a href="{{ route('mechanicpanel.appointments.index') }}"
                         class="inline-block bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200">
@@ -98,12 +88,10 @@
 
 
         </div>
-        <!-- بخش چک‌لیست -->
         <div class="mt-8 p-8 bg-white rounded-lg shadow-lg space-y-6">
             <h2 class="text-xl font-semibold text-indigo-700 mb-4">چک‌لیست تعمیرکار</h2>
 
             @if ($appointment->checklist)
-                <!-- فرم ویرایش چک‌لیست -->
                 <form action="{{ route('mechanicpanel.appointments.checklist.update', $appointment->id) }}" method="POST">
                     @csrf
                     @method('PUT')
@@ -129,7 +117,6 @@
                     </div>
                 </form>
 
-                <!-- فرم حذف چک‌لیست -->
                 <form action="{{ route('mechanicpanel.appointments.checklist.delete', $appointment->id) }}" method="POST"
                     class="mt-4">
                     @csrf
@@ -139,7 +126,6 @@
                         چک‌لیست</button>
                 </form>
             @else
-                <!-- فرم اضافه کردن چک‌لیست -->
                 <form action="{{ route('mechanicpanel.appointments.checklist.store', $appointment->id) }}" method="POST">
                     @csrf
 
@@ -208,7 +194,6 @@
                         </button>
                     </form>
                 @else
-                    <!-- فرم اضافه کردن گزارش خدمات -->
                     <form action="{{ route('mechanicpanel.appointments.service_report.store', $appointment->id) }}" method="POST">
                         @csrf
 

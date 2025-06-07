@@ -13,10 +13,8 @@ class MechanicPanelController extends Controller
 {
     public function index()
 {
-    // گرفتن مکانیک فعلی
     $mechanic = Auth::user();
 
-    // تعداد نوبت‌های در انتظار، تایید شده و تکمیل شده
     $pendingAppointmentsCount = Appointment::where('repairman_id', $mechanic->id)
                                             ->where('status', 'pending')
                                             ->count();
@@ -29,13 +27,10 @@ class MechanicPanelController extends Controller
                                              ->where('status', 'completed')
                                              ->count();
 
-    // دریافت سرویس‌ها و تیکت‌ها برای مکانیک
     $services = Service::where('repairman_id', $mechanic->id)->get();
 
-    // تغییر: استفاده از user_id برای فیلتر تیکت‌ها
     $tickets = Ticket::where('user_id', $mechanic->id)->get();
 
-    // ارسال اطلاعات به ویو
     return view('mechanic.index', [
         'pendingAppointmentsCount' => $pendingAppointmentsCount,
         'confirmedAppointmentsCount' => $confirmedAppointmentsCount,

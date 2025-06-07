@@ -19,36 +19,30 @@
     <form action="{{ route('mechanicpanel.services.store') }}" method="POST" class="bg-white p-6 rounded-lg shadow-sm space-y-4">
         @csrf
 
-        <!-- Title Field -->
         <div class="form-group">
             <label for="title" class="block text-sm font-medium text-gray-700 mb-2">عنوان سرویس</label>
             <input type="text" name="title" id="title" value="{{ old('title') }}" class="w-full border border-gray-300 rounded-md p-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="عنوان سرویس">
         </div>
 
-        <!-- Description Field -->
         <div class="form-group">
             <label for="description" class="block text-sm font-medium text-gray-700 mb-2">توضیحات</label>
             <textarea name="description" id="description" class="w-full border border-gray-300 rounded-md p-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="توضیحات سرویس">{{ old('description') }}</textarea>
         </div>
 
-        <!-- Price Estimate Field -->
         <div class="form-group">
             <label for="price_estimate" class="block text-sm font-medium text-gray-700 mb-2">قیمت تخمینی</label>
             <input type="number" name="price_estimate" id="price_estimate" value="{{ old('price_estimate') }}" class="w-full border border-gray-300 rounded-md p-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="قیمت تخمینی">
         </div>
 
-        <!-- Duration Estimate Field -->
         <div class="form-group">
             <label for="duration_estimate" class="block text-sm font-medium text-gray-700 mb-2">مدت زمان تخمینی (دقیقه)</label>
             <input type="number" name="duration_estimate" id="duration_estimate" value="{{ old('duration_estimate') }}" class="w-full border border-gray-300 rounded-md p-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500" placeholder="مدت زمان تخمینی">
         </div>
 
-        <!-- Submit Button -->
         <div>
             <button type="submit" class="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 focus:outline-none transition duration-200">ایجاد سرویس</button>
         </div>
 
-        <!-- دکمه برگشت به لیست سرویس‌ها -->
         <div class="mt-4">
             <a href="{{ route('mechanicpanel.services.index') }}" class="inline-block text-center w-full bg-blue-600 text-white px-4 py-2 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200">
                 بازگشت به لیست سرویس‌ها

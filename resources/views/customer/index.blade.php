@@ -5,7 +5,6 @@
 @section('content')
     <div class="container mx-auto p-6">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- کارت خوشامدگویی -->
             <div class="bg-gradient-to-r from-indigo-500 via-indigo-600 to-indigo-700 p-6 rounded-lg shadow-xl fade-in text-white">
                 <h2 class="text-2xl font-semibold">خوش آمدید {{ Auth::user()->name }}</h2>
                 <p class="mt-2">از اینکه به سامانه مشتریان تعمیرگاه ما پیوستید خوشحالیم. در اینجا می‌توانید تمامی نوبت‌ها، وسایل نقلیه و تیکت‌های خود را مدیریت کنید.</p>
@@ -17,7 +16,6 @@
                 </div>
             </div>
 
-            <!-- کارت وضعیت نوبت‌ها -->
             <div class="bg-white p-6 rounded-lg shadow-xl fade-in">
                 <h2 class="text-2xl font-semibold text-indigo-600">وضعیت نوبت‌ها</h2>
                 <div class="mt-6 space-y-4">
@@ -36,14 +34,13 @@
                 </div>
             </div>
 
-            <!-- کارت وسایل نقلیه -->
             <div class="bg-white p-6 rounded-lg shadow-xl fade-in">
                 <h2 class="text-2xl font-semibold text-indigo-600">وسایل نقلیه شما</h2>
                 <div class="mt-4 space-y-4">
                     @foreach($vehicles as $vehicle)
                         <div class="flex justify-between items-center border-b pb-4">
                             <span class="text-gray-600 font-semibold">{{ $vehicle->brand }} - {{ $vehicle->model }}</span>
-                           
+
                         </div>
                     @endforeach
                     @if($vehicles->isEmpty())
@@ -55,7 +52,6 @@
             </div>
         </div>
 
-        <!-- بخش تیکت‌ها -->
         <div class="mt-8 bg-white p-6 rounded-lg shadow-xl fade-in">
             <h2 class="text-2xl font-semibold text-indigo-600">تیکت‌های شما</h2>
             <div class="mt-6 space-y-4">

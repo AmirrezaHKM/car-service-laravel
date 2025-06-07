@@ -11,7 +11,7 @@
             direction: rtl;
             font-family: 'Vazir', sans-serif !important;
             scroll-behavior: smooth;
-            background-color: #f3f4f6; /* bg-gray-100 */
+            background-color: #f3f4f6;
         }
 
         .fade-in {
@@ -43,7 +43,6 @@
                 <a href="{{ route('mechanicpanel.dashboard') }}"
                     class="flex items-center gap-3 px-4 py-2 rounded hover:bg-blue-500 hover:text-white transition
                    {{ request()->routeIs('mechanicpanel.dashboard') ? 'bg-blue-600 text-white' : 'text-gray-700' }}">
-                    <!-- آیکون داشبورد -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -56,7 +55,6 @@
                 <a href="{{ route('mechanicpanel.services.index') }}"
                     class="flex items-center gap-3 px-4 py-2 rounded hover:bg-blue-500 hover:text-white transition
                    {{ request()->routeIs('mechanicpanel.services.*') ? 'bg-blue-600 text-white' : 'text-gray-700' }}">
-                    <!-- آیکون سرویس‌ها -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -98,9 +96,8 @@
             class="bg-gradient-to-l from-blue-600 to-blue-500 text-white py-4 px-6 shadow-lg flex justify-between items-center">
             <div class="text-xl font-bold">سامانه مکانیک تعمیرگاه</div>
             <div class="text-sm flex items-center gap-3">
-                <!-- لینک بازگشت به سایت -->
                 <a href="{{ route('home') }}" class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition">بازگشت به سایت</a>
-                <span>👨‍🔧 {{ Auth::user()->name }} عزیز</span> <!-- نمایش نام مکانیک -->
+                <span>👨‍🔧 {{ Auth::user()->name }} عزیز</span>
             </div>
         </header>
 

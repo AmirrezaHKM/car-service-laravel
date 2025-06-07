@@ -31,7 +31,6 @@
                 <a href="{{ route('admin.dashboard') }} "
                    class="flex items-center gap-3 px-4 py-2 rounded hover:bg-blue-500 hover:text-white transition
                    {{ request()->routeIs('admin.dashboard') ? 'bg-blue-600 text-white' : 'text-gray-700' }}">
-                    <!-- آیکون داشبورد (نمونه SVG) -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
                          viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -44,7 +43,6 @@
                 <a href="{{ route('admin.users.index') }}"
                    class="flex items-center gap-3 px-4 py-2 rounded hover:bg-blue-500 hover:text-white transition
                    {{ request()->routeIs('admin.users.*') ? 'bg-blue-600 text-white' : 'text-gray-700' }}">
-                    <!-- آیکون کاربران -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
                          viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -57,7 +55,6 @@
                 <a href="{{ route('admin.tickets.index') }}"
                    class="flex items-center gap-3 px-4 py-2 rounded hover:bg-blue-500 hover:text-white transition
                    {{ request()->routeIs('admin.tickets.*') ? 'bg-blue-600 text-white' : 'text-gray-700' }}">
-                    <!-- آیکون تیکت‌ها -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
                          viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -73,7 +70,7 @@
     <main class="flex-1  overflow-auto fade-in">
         <header class="bg-gradient-to-l from-indigo-600 to-indigo-500 text-white py-4 px-6 shadow-lg flex justify-between items-center">
             <div class="text-xl font-bold">سامانه مدیریت تعمیرگاه</div>
-            <div class="text-sm">👤 {{ Auth::user()->name }} (مدیر سیستم)</div>  <!-- نام مدیر سیستم -->
+            <div class="text-sm">👤 {{ Auth::user()->name }} (مدیر سیستم)</div>
         </header>
         <div class=" my-10 p-6">
             @yield('content')

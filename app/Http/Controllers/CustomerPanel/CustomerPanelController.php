@@ -12,18 +12,14 @@ class CustomerPanelController extends Controller
     {
         $user = Auth::user();
 
-        // دریافت تیکت‌ها
-        $tickets = $user->tickets()->get() ?? collect(); // اضافه کردن get() برای دریافت تیکت‌ها
+        $tickets = $user->tickets()->get() ?? collect();
 
-        // محاسبه تعداد نوبت‌ها برای مشتری
         $pendingAppointmentsCount = $user->getPendingAppointmentsCount();
         $confirmedAppointmentsCount = $user->getConfirmedAppointmentsCount();
         $completedAppointmentsCount = $user->getCompletedAppointmentsCount();
 
-        // دریافت وسایل نقلیه
         $vehicles = $user->vehicles ?? collect();
 
-        // ارسال داده‌ها به ویو
         return view('customer.index', compact(
             'vehicles',
             'tickets',

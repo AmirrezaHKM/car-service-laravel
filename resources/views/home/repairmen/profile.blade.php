@@ -6,7 +6,6 @@
 <section class="max-w-6xl mx-auto my-12 px-4">
     <h2 class="text-4xl font-extrabold text-indigo-800 mb-10 text-center">پروفایل تعمیرکار</h2>
 
-    <!-- مشخصات تعمیرکار -->
     <div class="bg-white rounded-2xl shadow-lg p-6 mb-10 border border-indigo-100">
         <h3 class="text-2xl font-bold text-indigo-700 mb-4">اطلاعات فردی</h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-gray-700 text-base">
@@ -21,7 +20,6 @@
         </div>
     </div>
 
-    <!-- لیست خدمات -->
     <div class="bg-white rounded-2xl shadow-lg p-6 mb-10 border border-indigo-100">
         <h3 class="text-2xl font-bold text-indigo-700 mb-4">خدمات ارائه شده</h3>
         @if($services->count())
@@ -55,7 +53,7 @@
                     <th class="py-2 px-4 border">تاریخ</th>
                     <th class="py-2 px-4 border">ساعت</th>
                     <th class="py-2 px-4 border">وضعیت</th>
-                    <th class="py-2 px-4 border">تعمیرکار</th> <!-- اضافه کردن ستون تعمیرکار -->
+                    <th class="py-2 px-4 border">تعمیرکار</th>
                 </tr>
             </thead>
             <tbody>
@@ -82,7 +80,7 @@
                         </span>
                     </td>
                     <td class="py-2 px-4 border">
-                        {{ $app->repairman->name ?? 'نامشخص' }} <!-- اصلاح دسترسی به تعمیرکار -->
+                        {{ $app->repairman->name ?? 'نامشخص' }}
                     </td>
                 </tr>
                 @endforeach
