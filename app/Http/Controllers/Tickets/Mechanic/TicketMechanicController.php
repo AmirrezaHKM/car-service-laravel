@@ -64,7 +64,11 @@ class TicketMechanicController extends Controller
             'sender_id' => $user->id,
             'message' => $request->message,
         ]);
-
+          // اضافه کردن تغییر وضعیت تیکت
+        if ($ticket->status === 'answered') {
+            $ticket->status = 'open';  
+            $ticket->save();
+        }
         return redirect()->route('mechanicpanel.tickets.show', $ticket)
                          ->with('success', 'پاسخ با موفقیت ارسال شد.');
     }

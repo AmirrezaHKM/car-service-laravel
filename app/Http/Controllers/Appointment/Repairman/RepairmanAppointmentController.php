@@ -37,9 +37,9 @@ class RepairmanAppointmentController extends Controller
             $validated = $request->validate([
                 'appointment_time' => 'nullable|date',
                 'repairman_note' => 'nullable|string',
-                'status' => 'nullable|in:accepted,rejected',
+                'status' => 'required|in:pending,accepted,rejected,completed,canceled',
             ]);
-
+            
             if (isset($validated['appointment_time'])) {
                 $appointment->appointment_time = $validated['appointment_time'];
             }
@@ -154,7 +154,5 @@ class RepairmanAppointmentController extends Controller
 
         return redirect()->route('mechanicpanel.appointments.index')->with('success', 'گزارش خدمات با موفقیت حذف شد.');
     }
-
-
 
 }

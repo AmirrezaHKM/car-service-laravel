@@ -20,7 +20,7 @@ class MechanicPanelController extends Controller
                                             ->count();
 
     $confirmedAppointmentsCount = Appointment::where('repairman_id', $mechanic->id)
-                                              ->where('status', 'confirmed')
+                                              ->where('status', 'accepted')
                                               ->count();
 
     $completedAppointmentsCount = Appointment::where('repairman_id', $mechanic->id)

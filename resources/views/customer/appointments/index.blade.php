@@ -46,9 +46,8 @@
 
                     <div class="mb-4">
                         <strong class="text-gray-600">وضعیت: </strong>
-                        <span class="text-sm font-medium {{ $appointment->status == 'pending' ? 'text-yellow-600' : ($appointment->status == 'accepted' ? 'text-green-600' : 'text-gray-600') }}">
-                            {{ ucfirst($appointment->status) }}
-                        </span>
+                        <x-status-badge :status="$appointment->status" />
+
                     </div>
                     <div class="flex justify-between items-center mt-4">
                         <a href="{{ route('customerpanel.appointments.show', $appointment->id) }}"

@@ -52,8 +52,6 @@ class Appointment extends Model
         return $this->hasOne(ServiceReport::class);
     }
 
-    
-
     protected $casts = [
         'appointment_time' => 'datetime',
         'proposed_time' => 'datetime',

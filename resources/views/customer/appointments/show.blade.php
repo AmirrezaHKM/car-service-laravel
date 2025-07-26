@@ -34,9 +34,8 @@
                 <div class="flex flex-col">
                     <label for="status" class="text-lg font-semibold text-gray-800">وضعیت</label>
                     <div class="mt-2 p-4 bg-gray-100 rounded-lg text-gray-700">
-                        <span class="font-medium {{ $appointment->status == 'pending' ? 'text-yellow-600' : ($appointment->status == 'accepted' ? 'text-green-600' : 'text-gray-600') }}">
-                            {{ ucfirst($appointment->status) }}
-                        </span>
+                    <x-status-badge :status="$appointment->status" />
+
                     </div>
                 </div>
 

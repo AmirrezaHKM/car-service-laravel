@@ -64,6 +64,16 @@ Route::prefix('admin')
             Route::put('/{ticket}/status', [TicketAdminController::class, 'updateStatus'])->name('update-status');
             Route::delete('/{ticket}', [TicketAdminController::class, 'destroy'])->name('destroy');
         });
+        
+        Route::prefix('services')->name('services.')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Admin\ServiceController::class, 'index'])->name('index');
+            Route::get('/create', [\App\Http\Controllers\Admin\ServiceController::class, 'create'])->name('create');
+            Route::post('/', [\App\Http\Controllers\Admin\ServiceController::class, 'store'])->name('store');
+            Route::get('/{service}/edit', [\App\Http\Controllers\Admin\ServiceController::class, 'edit'])->name('edit');
+            Route::put('/{service}', [\App\Http\Controllers\Admin\ServiceController::class, 'update'])->name('update');
+            Route::delete('/{service}', [\App\Http\Controllers\Admin\ServiceController::class, 'destroy'])->name('destroy');
+        });
+        
 });
 
 

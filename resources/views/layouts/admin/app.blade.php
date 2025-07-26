@@ -52,6 +52,18 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('admin.services.index') }}"
+                class="flex items-center gap-3 px-4 py-2 rounded hover:bg-blue-500 hover:text-white transition
+                {{ request()->routeIs('admin.services.*') ? 'bg-blue-600 text-white' : 'text-gray-700' }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 12h6m2 0a2 2 0 002-2V8a2 2 0 00-2-2H7a2 2 0 00-2 2v2a2 2 0 002 2zm0 0v6a2 2 0 01-2 2H7a2 2 0 01-2-2v-6" />
+                    </svg>
+                    مدیریت سرویس‌ها
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('admin.tickets.index') }}"
                    class="flex items-center gap-3 px-4 py-2 rounded hover:bg-blue-500 hover:text-white transition
                    {{ request()->routeIs('admin.tickets.*') ? 'bg-blue-600 text-white' : 'text-gray-700' }}">
@@ -63,6 +75,32 @@
                     تیکت‌ها
                 </a>
             </li>
+            <li>
+                <a href="{{ route('home') }}"
+                class="flex items-center gap-3 px-4 py-2 rounded hover:bg-green-500 hover:text-white transition text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    بازگشت به سایت
+                </a>
+            </li>
+            <li>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit"
+                        class="w-full flex items-center gap-3 px-4 py-2 rounded hover:bg-red-500 hover:text-white transition text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1m0-10V5m0 6H3" />
+                        </svg>
+                        خروج
+                    </button>
+                    </form>
+            </li>
+
         </ul>
     </aside>
 

@@ -58,7 +58,13 @@
                 @foreach($tickets as $ticket)
                     <div class="flex justify-between items-center py-3 border-b">
                         <span class="text-gray-600 font-medium">{{ $ticket->subject }}</span>
-                        <span class="text-gray-500">{{ $ticket->status }}</span>
+                        @if($ticket->status == 'open')
+                            <span class="text-green-600 font-semibold">باز</span>
+                        @elseif($ticket->status == 'answered')
+                            <span class="text-blue-600 font-semibold">پاسخ داده شده</span>
+                        @else
+                            <span class="text-red-600 font-semibold">بسته شده</span>
+                        @endif
                         <a href="{{ route('mechanicpanel.tickets.show', $ticket->id) }}"
                            class="text-blue-600 hover:text-blue-800 font-medium">مشاهده</a>
                     </div>

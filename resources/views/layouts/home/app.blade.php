@@ -5,6 +5,7 @@
     <title>@yield('title', 'سامانه نوبت‌دهی تعمیرگاه')</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
         body {

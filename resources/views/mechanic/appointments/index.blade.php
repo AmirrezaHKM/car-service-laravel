@@ -5,7 +5,7 @@
     <h1 class="text-3xl font-semibold text-indigo-700 mb-8 text-center">نوبت‌های شما</h1>
 
     @if ($appointments->isEmpty())
-        <p class="text-center text-lg text-gray-500">شما هیچ نوبتی ثبت نکرده‌اید.</p>
+        <p class="text-center text-lg text-gray-500">برای شما هیچ نوبتی ثبت نشده.</p>
     @else
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach ($appointments as $appointment)
@@ -45,9 +45,8 @@
 
                     <div class="mb-4">
                         <strong class="text-gray-600">وضعیت: </strong>
-                        <span class="text-sm font-medium {{ $appointment->status == 'pending' ? 'text-yellow-600' : ($appointment->status == 'accepted' ? 'text-green-600' : 'text-gray-600') }}">
-                            {{ ucfirst($appointment->status) }}
-                        </span>
+                        <x-status-badge :status="$appointment->status" />
+
                     </div>
 
                     <div class="flex justify-between items-center mt-4">
